@@ -1,8 +1,29 @@
 
+var captcha;
 
 $(document).ready(function() {
-    // register our function as the "callback" to be triggered by the form's submission event
-    $("#form-gif-request").submit(fetchAndDisplayGif); // in other words, when the form is submitted, fetchAndDisplayGif() will be executed
+
+    $("#form-gif-request").submit(function(evt) {
+
+        // This line prevents the form submission from doing what it normally does:
+        // send a request (which would cause our page to refresh).
+        // Because we will be making our own AJAX request,
+        // we dont need to send a normal request
+        // and we definitely don't want the page to refresh.
+        event.preventDefault();
+
+        // check if the user's CAPTCHA attempt is correct
+        if ($("input[name='captcha']").val() == "5") {
+            // fetch and display the GIF
+            fetchAndDisplayGif();
+            // hide the red "No Gifs" error message
+            toggleCaptchaError(false);
+        }
+        else {
+            // show the red "No Gifs" error message
+            toggleCaptchaError(true);
+        }
+    });
 });
 
 
@@ -13,10 +34,6 @@ $(document).ready(function() {
  * upon receiving a response from Giphy, updates the DOM to display the new GIF
  */
 function fetchAndDisplayGif(event) {
-
-    // This prevents the form submission from doing what it normally does: send a request (which would cause our page to refresh).
-    // Because we will be making our own AJAX request, we dont need to send a normal request and we definitely don't want the page to refresh.
-    event.preventDefault();
 
     // get the user's input text from the DOM
     var searchQuery = $("#form-gif-request").find("[name='tag']").val(); // DONE should be e.g. "dance"
@@ -70,4 +87,10 @@ function fetchAndDisplayGif(event) {
 function setGifLoadedStatus(isCurrentlyLoaded) {
     $("#gif").attr("hidden", !isCurrentlyLoaded);
     $("#feedback").attr("hidden", isCurrentlyLoaded);
+}
+
+
+function toggleCaptchaError(isError) {
+    $("#captcha-container").toggleClass("has-error", isError);
+    $("#error-msg").attr("hidden", !isError);
 }
