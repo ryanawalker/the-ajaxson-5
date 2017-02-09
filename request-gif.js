@@ -43,12 +43,11 @@ function fetchAndDisplayGif(event) {
     var params = {
         api_key: "dc6zaTOxFJmzC",
         tag : "jackson 5" + searchQuery // DONE should be e.g. "jackson 5 dance"
-
     };
 
     // make an ajax request for a random GIF
     $.ajax({
-        url: "https://api.giphy.com/v1/gifs/random/", // DONE where should this request be sent?
+        url: "https://api.giphy.com/v1/gifs/random", // DONE where should this request be sent?
         data: params, // attach those extra parameters onto the request
         success: function(response) {
             // if the response comes back successfully, the code in here will execute.
@@ -63,8 +62,10 @@ function fetchAndDisplayGif(event) {
             // 2. hide the feedback message and display the image
             setGifLoadedStatus(true);
         },
-        error: function() {
+        error: function(err) {
             // if something went wrong, the code in here will execute instead of the success function
+            console.log("we got an error:");
+            console.log(err);
 
             // give the user an error message
             $("#feedback").text("Sorry, could not load GIF. Try again!");
