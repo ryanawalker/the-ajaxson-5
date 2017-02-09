@@ -3,24 +3,12 @@
 <head>
     <title>The AJAXson 5</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="request-gif.js"></script>
     <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
-
-    <style>
-        main {
-            padding: 4%;
-            max-width: 600px;
-            margin: auto;
-        }
-        header {
-            text-align: center;
-            padding: 1em;
-            background: #eee;
-        }
-    </style>
+    <script type="text/javascript" src="request-gif.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -41,7 +29,7 @@
                         Prove you are not a robot by filling in this sentence:
                     </label>
                     <div class="input-group">
-                        <input type="text" name="captcha" class="form-control" style="text-align: right">
+                        <input type="text" name="captcha" class="form-control">
                         <span class="input-group-addon">
                             Jacksons are better than 1.
                         </span>
@@ -54,9 +42,9 @@
             </form>
         </section>
         <hr>
-        <section>
-            <img id="gif" src="" class="img-responsive" hidden="true" style="margin: auto; display: block;"/>
-            <p id="feedback" hidden="true" style="text-align: center"></p>
+        <section id="gif-container">
+            <p id="feedback" hidden="true"></p>
+            <img id="gif" src="" class="img-responsive" hidden="true"/>
         </section>
     </main>
 </body>
