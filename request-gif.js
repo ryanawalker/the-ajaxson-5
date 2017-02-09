@@ -1,6 +1,4 @@
 
-var captcha;
-
 $(document).ready(function() {
 
     $("#form-gif-request").submit(function(evt) {
